@@ -6,6 +6,7 @@
   let edges = [];
   let isDragging = false;
   let dragNode = null;
+  let selectedNode = null;
 
   onMount(() => {
     const ctx = canvas.getContext('2d');
@@ -13,6 +14,7 @@
     canvas.addEventListener('mousedown', startDrag);
     canvas.addEventListener('mousemove', drag);
     canvas.addEventListener('mouseup', endDrag);
+    canvas.addEventListener('dblclick', addEdge);
     draw();
   });
 
@@ -22,6 +24,27 @@
     const y = event.clientY - rect.top;
     nodes.push({ x, y });
     draw();
+  }
+
+  function addEdge(event) {
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const node = nodes.find(node => Math.hypot(node.x - x, node.y - y) < 10);
+
+    if (node) {
+      if (selectedNode) {
+        if (selectedNode !== node) {
+          const startIndex = nodes.indexOf(selectedNode);
+          const endIndex = nodes.indexOf(node);
+          edges.push({ start: startIndex, end: endIndex });
+          draw();
+        }
+        selectedNode = null;
+      } else {
+        selectedNode = node;
+      }
+    }
   }
 
   function startDrag(event) {
