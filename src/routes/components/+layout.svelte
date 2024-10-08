@@ -15,11 +15,22 @@
     flex-grow: 1;
     padding: 15px;
   }
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
   .sidebar a {
     display: block;
     margin: 10px 0;
     text-decoration: none;
     color: #333;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .sidebar a:hover {
+    background-color: #ddd;
+    color: #000;
   }
 </style>
 
