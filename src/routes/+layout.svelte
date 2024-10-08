@@ -28,11 +28,6 @@
     background-color: #ddd;
     color: #000;
   }
-    display: block;
-    margin: 10px 0;
-    text-decoration: none;
-    color: #333;
-  }
 </style>
 
 <div class="container">
@@ -41,10 +36,6 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/components">Components</a></li>
-      <li><a href="/components/test-component1">Test Component 1</a></li>
-      <li><a href="/components/tree-canvas">Tree Canvas</a></li>
-      <li><a href="/components/graph-canvas">Graph Canvas</a></li>
-      <li><a href="/components/svelte-canvas-graph">Svelte Canvas Graph</a></li>
     </ul>
   </nav>
   <main class="content">
