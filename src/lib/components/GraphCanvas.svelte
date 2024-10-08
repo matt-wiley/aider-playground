@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	export let width = 400;
+	export let height = 400;
 	let canvas;
 	let nodes = [];
 	let edges = [];
@@ -132,7 +134,7 @@
 
 </script>
 
-<canvas bind:this={canvas} width="400" height="400"></canvas>
+<canvas bind:this={canvas} {width} {height}></canvas>
 
 <style>
 	canvas {
