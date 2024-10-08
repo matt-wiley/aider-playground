@@ -19,5 +19,15 @@
   }
 </style>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="container">
+  <nav class="navbar">
+    <h2>Navbar</h2>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="/test-component1">Test Component 1</a>
+  </nav>
+  <main class="content">
+    <slot></slot>
+  </main>
+</div>
