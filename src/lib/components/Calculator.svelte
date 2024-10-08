@@ -112,6 +112,5 @@
     <button on:click={() => chooseOperation('*')}>*</button>
     <button on:click={() => inputNumber('0')}>0</button>
     <button on:click={() => chooseOperation('/')}>/</button>
-    <button on:click={() => inputNumber('0')}>0</button>
   </div>
 </div>
