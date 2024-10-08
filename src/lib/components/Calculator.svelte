@@ -12,7 +12,11 @@
   }
 
   function inputNumber(number) {
-    currentInput = currentInput + number;
+    if (currentInput === '0') {
+      currentInput = number;
+    } else {
+      currentInput = currentInput + number;
+    }
   }
 
   function chooseOperation(selectedOperator) {
