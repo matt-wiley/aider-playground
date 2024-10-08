@@ -22,11 +22,18 @@
     flex-grow: 1;
     padding: 15px;
   }
-  .sidebar a {
+  .navbar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .navbar a {
     display: block;
     margin: 10px 0;
     text-decoration: none;
     color: #333;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
   }
 </style>
 
