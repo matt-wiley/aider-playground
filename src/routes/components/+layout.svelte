@@ -15,29 +15,17 @@
     flex-grow: 1;
     padding: 15px;
   }
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
   .sidebar a {
     display: block;
     margin: 10px 0;
     text-decoration: none;
     color: #333;
-    padding: 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  .sidebar a:hover {
-    background-color: #ddd;
-    color: #000;
   }
 </style>
 
 <div class="container">
   <nav class="sidebar">
     <ul>
-      <li><a href="/components/graph-canvas">Graph Canvas</a></li>
       <li><a href="/components/svelte-canvas-graph">Svelte Canvas Graph</a></li>
       <li><a href="/components/test-component1">Test Component 1</a></li>
       <li><a href="/components/tree-canvas">Tree Canvas</a></li>
