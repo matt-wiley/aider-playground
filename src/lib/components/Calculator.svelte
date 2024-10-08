@@ -1,6 +1,6 @@
 <script>
   let result = 0;
-  let currentInput = '';
+  let currentInput = '0';
   let operator = null;
   let previousInput = '';
 
