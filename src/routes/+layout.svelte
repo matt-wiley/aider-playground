@@ -26,6 +26,7 @@
     <a href="/test-component1">Test Component 1</a>
     <a href="/tree-canvas">Tree Canvas</a>
     <a href="/graph-canvas">Graph Canvas</a>
+    <a href="/svelte-canvas-graph">Svelte Canvas Graph</a>
   </nav>
   <main class="content">
     <slot></slot>
