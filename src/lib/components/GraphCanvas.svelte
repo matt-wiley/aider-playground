@@ -14,7 +14,6 @@
 		canvas.addEventListener('mousedown', startDrag);
 		canvas.addEventListener('mousemove', drag);
 		canvas.addEventListener('mouseup', endDrag);
-		canvas.addEventListener('dblclick', addEdge);
 		canvas.addEventListener('contextmenu', deleteNode);
 		draw();
 	});
@@ -53,7 +52,9 @@
 		const x = event.clientX - rect.left;
 		const y = event.clientY - rect.top;
 		dragNode = nodes.find((node) => Math.hypot(node.x - x, node.y - y) < 10);
-		if (dragNode) {
+		if (event.ctrlKey && dragNode) {
+			selectedNode = dragNode;
+		} else if (dragNode) {
 			isDragging = true;
 		}
 	}
@@ -68,8 +69,23 @@
 	}
 
 	function endDrag() {
-		isDragging = false;
-		dragNode = null;
+		if (selectedNode) {
+			const rect = canvas.getBoundingClientRect();
+			const x = event.clientX - rect.left;
+			const y = event.clientY - rect.top;
+			const endNode = nodes.find((node) => Math.hypot(node.x - x, node.y - y) < 10);
+
+			if (endNode && endNode !== selectedNode) {
+				const startIndex = nodes.indexOf(selectedNode);
+				const endIndex = nodes.indexOf(endNode);
+				edges.push({ start: startIndex, end: endIndex });
+			}
+			selectedNode = null;
+		}
+		if (isDragging) {
+			isDragging = false;
+			dragNode = null;
+		}
 	}
 
 	function deleteNode(event) {
