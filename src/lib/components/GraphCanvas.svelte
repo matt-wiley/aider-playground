@@ -117,6 +117,11 @@
 
 		// Draw nodes
 		nodes.forEach((node) => {
+			ctx.fillStyle = '#007bff';
+			ctx.beginPath();
+			ctx.arc(node.x, node.y, 10, 0, Math.PI * 2);
+			ctx.fill();
+
 			if (node === hoveredNode) {
 				ctx.strokeStyle = 'yellow';
 				ctx.lineWidth = 3;
@@ -124,10 +129,6 @@
 				ctx.arc(node.x, node.y, 12, 0, Math.PI * 2);
 				ctx.stroke();
 			}
-			ctx.fillStyle = '#007bff';
-			ctx.beginPath();
-			ctx.arc(node.x, node.y, 10, 0, Math.PI * 2);
-			ctx.fill();
 		});
 	}
 
