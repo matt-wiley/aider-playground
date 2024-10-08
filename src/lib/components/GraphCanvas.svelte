@@ -107,6 +107,8 @@
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Draw edges
+		// Draw edges
+		ctx.lineWidth = 1;
 		ctx.strokeStyle = '#000';
 		edges.forEach((edge) => {
 			ctx.beginPath();
