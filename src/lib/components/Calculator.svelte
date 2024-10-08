@@ -40,7 +40,12 @@
       case '-':
         result = prev - current;
         break;
-      default:
+      case '*':
+        result = prev * current;
+        break;
+      case '/':
+        result = prev / current;
+        break;
         return;
     }
     currentInput = result.toString();
@@ -104,7 +109,9 @@
     <button on:click={() => inputNumber('1')}>1</button>
     <button on:click={() => inputNumber('2')}>2</button>
     <button on:click={() => inputNumber('3')}>3</button>
-    <button on:click={compute}>=</button>
+    <button on:click={() => chooseOperation('*')}>*</button>
+    <button on:click={() => inputNumber('0')}>0</button>
+    <button on:click={() => chooseOperation('/')}>/</button>
     <button on:click={() => inputNumber('0')}>0</button>
   </div>
 </div>
