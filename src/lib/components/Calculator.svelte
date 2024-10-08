@@ -113,5 +113,9 @@
     <button on:click={() => inputNumber('0')}>0</button>
     <button on:click={clear}>C</button>
     <button on:click={() => chooseOperation('/')}>/</button>
+    <div></div>
+    <div></div>
+    <div></div>
+    <button on:click={compute}>=</button>
   </div>
 </div>
