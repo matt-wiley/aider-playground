@@ -115,17 +115,15 @@
 			ctx.stroke();
 		});
 
-		// Draw hovered node ring
-		if (hoveredNode) {
-			ctx.strokeStyle = 'yellow';
-			ctx.lineWidth = 3;
-			ctx.beginPath();
-			ctx.arc(hoveredNode.x, hoveredNode.y, 12, 0, Math.PI * 2);
-			ctx.stroke();
-		}
-
 		// Draw nodes
 		nodes.forEach((node) => {
+			if (node === hoveredNode) {
+				ctx.strokeStyle = 'yellow';
+				ctx.lineWidth = 3;
+				ctx.beginPath();
+				ctx.arc(node.x, node.y, 12, 0, Math.PI * 2);
+				ctx.stroke();
+			}
 			ctx.fillStyle = '#007bff';
 			ctx.beginPath();
 			ctx.arc(node.x, node.y, 10, 0, Math.PI * 2);
