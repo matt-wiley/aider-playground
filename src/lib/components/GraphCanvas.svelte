@@ -15,6 +15,7 @@
     canvas.addEventListener('mousemove', drag);
     canvas.addEventListener('mouseup', endDrag);
     canvas.addEventListener('dblclick', addEdge);
+    canvas.addEventListener('contextmenu', deleteNode);
     draw();
   });
 
@@ -71,7 +72,26 @@
     dragNode = null;
   }
 
-  function draw() {
+  function deleteNode(event) {
+    event.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const nodeIndex = nodes.findIndex(node => Math.hypot(node.x - x, node.y - y) < 10);
+
+    if (nodeIndex !== -1) {
+      nodes.splice(nodeIndex, 1);
+      edges = edges.filter(edge => edge.start !== nodeIndex && edge.end !== nodeIndex);
+
+      // Update edge indices
+      edges = edges.map(edge => ({
+        start: edge.start > nodeIndex ? edge.start - 1 : edge.start,
+        end: edge.end > nodeIndex ? edge.end - 1 : edge.end
+      }));
+
+      draw();
+    }
+  }
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
