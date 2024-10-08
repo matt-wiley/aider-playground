@@ -5,8 +5,15 @@
 <style>
   .container {
     display: flex;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
   }
-  .sidebar {
+  .navbar a:hover {
+    background-color: #ddd;
+    color: #000;
+  }
+  .navbar {
     width: 200px;
     background-color: #f4f4f4;
     padding: 15px;
@@ -24,7 +31,7 @@
 </style>
 
 <div class="container">
-  <nav class="sidebar">
+  <nav class="navbar">
     <ul>
       <li><a href="/components/svelte-canvas-graph">Svelte Canvas Graph</a></li>
       <li><a href="/components/test-component1">Test Component 1</a></li>
