@@ -21,11 +21,13 @@
 	});
 
 	function addNode(event) {
-		const rect = canvas.getBoundingClientRect();
-		const x = event.clientX - rect.left;
-		const y = event.clientY - rect.top;
-		nodes.push({ x, y });
-		draw();
+		if (!event.ctrlKey) {
+			const rect = canvas.getBoundingClientRect();
+			const x = event.clientX - rect.left;
+			const y = event.clientY - rect.top;
+			nodes.push({ x, y });
+			draw();
+		}
 	}
 
 	function addEdge(event) {
