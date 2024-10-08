@@ -43,6 +43,7 @@
       <li><a href="/components/svelte-canvas-graph">Svelte Canvas Graph</a></li>
       <li><a href="/components/test-component1">Test Component 1</a></li>
       <li><a href="/components/tree-canvas">Tree Canvas</a></li>
+      <li><a href="/components/calculator">Calculator</a></li>
     </ul>
   </nav>
   <main class="content">
