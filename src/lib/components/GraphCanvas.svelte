@@ -80,24 +80,6 @@
 		const y = event.clientY - rect.top;
 		hoveredNode = nodes.find((node) => Math.hypot(node.x - x, node.y - y) < 10);
 		draw();
-	
-		if (selectedNode) {
-			const rect = canvas.getBoundingClientRect();
-			const x = event.clientX - rect.left;
-			const y = event.clientY - rect.top;
-			const endNode = nodes.find((node) => Math.hypot(node.x - x, node.y - y) < 10);
-
-			if (endNode && endNode !== selectedNode) {
-				const startIndex = nodes.indexOf(selectedNode);
-				const endIndex = nodes.indexOf(endNode);
-				edges.push({ start: startIndex, end: endIndex });
-			}
-			selectedNode = null;
-		}
-		if (isDragging) {
-			isDragging = false;
-			dragNode = null;
-		}
 	}
 
 	function deleteNode(event) {
