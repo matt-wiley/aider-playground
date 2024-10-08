@@ -24,10 +24,10 @@
     <h2>Navbar</h2>
     <a href="/">Home</a>
     <a href="/components">Components</a>
-    <a href="/test-component1">Test Component 1</a>
-    <a href="/tree-canvas">Tree Canvas</a>
-    <a href="/graph-canvas">Graph Canvas</a>
-    <a href="/svelte-canvas-graph">Svelte Canvas Graph</a>
+    <a href="/components/test-component1">Test Component 1</a>
+    <a href="/components/tree-canvas">Tree Canvas</a>
+    <a href="/components/graph-canvas">Graph Canvas</a>
+    <a href="/components/svelte-canvas-graph">Svelte Canvas Graph</a>
   </nav>
   <main class="content">
     <slot></slot>
