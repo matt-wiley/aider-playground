@@ -80,7 +80,7 @@
 		const y = event.clientY - rect.top;
 		hoveredNode = nodes.find((node) => Math.hypot(node.x - x, node.y - y) < 10);
 		draw();
-	}
+	
 		if (selectedNode) {
 			const rect = canvas.getBoundingClientRect();
 			const x = event.clientX - rect.left;
