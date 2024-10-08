@@ -23,6 +23,7 @@
   <nav class="navbar">
     <h2>Navbar</h2>
     <a href="/">Home</a>
+    <a href="/components">Components</a>
     <a href="/test-component1">Test Component 1</a>
     <a href="/tree-canvas">Tree Canvas</a>
     <a href="/graph-canvas">Graph Canvas</a>

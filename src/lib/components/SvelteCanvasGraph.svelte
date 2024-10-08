@@ -126,12 +126,122 @@
     };
   });
 
+
+  function isTree() {
+    // Step 1: Check if the number of edges is correct for a tree
+    if (edges.length !== nodes.length - 1) {
+      return false;
+    }
+
+    // Step 2: Check if the graph is connected and has no cycles using DFS
+    const adjacencyList = {};
+    nodes.forEach(node => {
+      adjacencyList[node.id] = [];
+    });
+    edges.forEach(edge => {
+      adjacencyList[edge.from].push(edge.to);
+      adjacencyList[edge.to].push(edge.from);
+    });
+
+    const visited = new Set();
+    function dfs(node, parent) {
+      if (visited.has(node)) {
+        return false; // Cycle detected
+      }
+      visited.add(node);
+      for (const neighbor of adjacencyList[node]) {
+        if (neighbor !== parent) {
+          if (!dfs(neighbor, node)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    // Start DFS from the first node
+    const startNode = nodes[0].id;
+    if (!dfs(startNode, null)) {
+      return false;
+    }
+
+    // Check if all nodes were visited (graph is connected)
+    return visited.size === nodes.length;
+  }
+
+
+  function reorganizeAsTree() {
+    if (!isTree()) {
+      alert("The graph is not a tree. Cannot reorganize.");
+      return;
+    }
+
+    // Find the root (node with no incoming edges)
+    const root = nodes.find(node => !edges.some(edge => edge.to === node.id));
+    if (!root) {
+      alert("Cannot find root node. Unable to reorganize.");
+      return;
+    }
+
+    // Create adjacency list
+    const adjacencyList = {};
+    nodes.forEach(node => {
+      adjacencyList[node.id] = [];
+    });
+    edges.forEach(edge => {
+      adjacencyList[edge.from].push(edge.to);
+    });
+
+    // Set up layout parameters
+    const levelHeight = 100;
+    const nodeWidth = 60;
+    let maxNodesInLevel = 1;
+
+    // Perform BFS to assign levels and positions
+    const queue = [{node: root.id, level: 0, index: 0}];
+    const processed = new Set();
+    const nodeLevels = {};
+    const nodeIndices = {};
+
+    while (queue.length > 0) {
+      const {node, level, index} = queue.shift();
+      nodeLevels[node] = level;
+      nodeIndices[node] = index;
+      processed.add(node);
+
+      const children = adjacencyList[node].filter(child => !processed.has(child));
+      maxNodesInLevel = Math.max(maxNodesInLevel, children.length);
+
+      children.forEach((child, i) => {
+        queue.push({node: child, level: level + 1, index: i});
+      });
+    }
+
+    // Update node positions
+    nodes = nodes.map(node => ({
+      ...node,
+      y: nodeLevels[node.id] * levelHeight + 50,
+      x: (nodeIndices[node.id] + 1) * (graphWidth / (maxNodesInLevel + 1))
+    }));
+
+    // Trigger Svelte reactivity
+    nodes = nodes;
+  }
+
+
+  function checkIfTree() {
+    const result = isTree();
+    alert(result ? "The graph is a tree!" : "The graph is not a tree.");
+  }
+
+
   onMount(() => {
     const rect = graphContainer.getBoundingClientRect();
     graphWidth = rect.width;
     graphHeight = rect.height;
   });
 </script>
+
 
 <div class="graph-container" 
      bind:this={graphContainer}
@@ -171,6 +281,8 @@
   <button on:click={() => mode = 'addEdge'}>Add Edge</button>
   <button on:click={() => mode = 'removeNode'}>Remove Node</button>
   <button on:click={renameNode}>Rename Node</button>
+  <button on:click={checkIfTree}>Check if Tree</button>
+  <button on:click={reorganizeAsTree}>Reorganize as Tree</button>
 </div>
 
 <style>
