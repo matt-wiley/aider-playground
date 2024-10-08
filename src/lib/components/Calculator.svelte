@@ -98,6 +98,10 @@
   <input class="display" type="text" bind:value={currentInput} readonly />
   <div class="buttons">
     <button on:click={clear}>C</button>
+    <button on:click={() => inputNumber('1')}>1</button>
+    <button on:click={() => inputNumber('2')}>2</button>
+    <button on:click={() => inputNumber('3')}>3</button>
+    <button on:click={() => chooseOperation('*')}>*</button>
     <button on:click={() => inputNumber('7')}>7</button>
     <button on:click={() => inputNumber('8')}>8</button>
     <button on:click={() => inputNumber('9')}>9</button>
@@ -106,10 +110,6 @@
     <button on:click={() => inputNumber('5')}>5</button>
     <button on:click={() => inputNumber('6')}>6</button>
     <button on:click={() => chooseOperation('-')}>-</button>
-    <button on:click={() => inputNumber('1')}>1</button>
-    <button on:click={() => inputNumber('2')}>2</button>
-    <button on:click={() => inputNumber('3')}>3</button>
-    <button on:click={() => chooseOperation('*')}>*</button>
     <button on:click={() => inputNumber('0')}>0</button>
     <button on:click={() => chooseOperation('/')}>/</button>
   </div>
