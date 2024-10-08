@@ -1,10 +1,47 @@
 <script>
   let result = 0;
-  let num1 = 0;
-  let num2 = 0;
+  let currentInput = '';
+  let operator = null;
+  let previousInput = '';
 
-  function add() {
-    result = num1 + num2;
+  function clear() {
+    currentInput = '';
+    previousInput = '';
+    operator = null;
+    result = 0;
+  }
+
+  function inputNumber(number) {
+    currentInput = currentInput + number;
+  }
+
+  function chooseOperation(selectedOperator) {
+    if (currentInput === '') return;
+    if (previousInput !== '') {
+      compute();
+    }
+    operator = selectedOperator;
+    previousInput = currentInput;
+    currentInput = '';
+  }
+
+  function compute() {
+    const prev = parseFloat(previousInput);
+    const current = parseFloat(currentInput);
+    if (isNaN(prev) || isNaN(current)) return;
+    switch (operator) {
+      case '+':
+        result = prev + current;
+        break;
+      case '-':
+        result = prev - current;
+        break;
+      default:
+        return;
+    }
+    currentInput = result.toString();
+    operator = null;
+    previousInput = '';
   }
 </script>
 
@@ -49,19 +86,21 @@
 
 <div class="calculator">
   <h2>Calculator</h2>
-  <input class="display" type="text" bind:value={result} readonly />
+  <input class="display" type="text" bind:value={currentInput} readonly />
   <div class="buttons">
-    <button on:click={() => (num1 = 0, num2 = 0, result = 0)}>C</button>
-    <button on:click={() => (num1 = num1 * 10 + 7)}>7</button>
-    <button on:click={() => (num1 = num1 * 10 + 8)}>8</button>
-    <button on:click={() => (num1 = num1 * 10 + 9)}>9</button>
-    <button on:click={() => (num1 = num1 * 10 + 4)}>4</button>
-    <button on:click={() => (num1 = num1 * 10 + 5)}>5</button>
-    <button on:click={() => (num1 = num1 * 10 + 6)}>6</button>
-    <button on:click={() => (num1 = num1 * 10 + 1)}>1</button>
-    <button on:click={() => (num1 = num1 * 10 + 2)}>2</button>
-    <button on:click={() => (num1 = num1 * 10 + 3)}>3</button>
-    <button on:click={() => (num1 = num1 * 10)}>0</button>
-    <button on:click={add}>+</button>
+    <button on:click={clear}>C</button>
+    <button on:click={() => inputNumber('7')}>7</button>
+    <button on:click={() => inputNumber('8')}>8</button>
+    <button on:click={() => inputNumber('9')}>9</button>
+    <button on:click={() => chooseOperation('+')}>+</button>
+    <button on:click={() => inputNumber('4')}>4</button>
+    <button on:click={() => inputNumber('5')}>5</button>
+    <button on:click={() => inputNumber('6')}>6</button>
+    <button on:click={() => chooseOperation('-')}>-</button>
+    <button on:click={() => inputNumber('1')}>1</button>
+    <button on:click={() => inputNumber('2')}>2</button>
+    <button on:click={() => inputNumber('3')}>3</button>
+    <button on:click={compute}>=</button>
+    <button on:click={() => inputNumber('0')}>0</button>
   </div>
 </div>
