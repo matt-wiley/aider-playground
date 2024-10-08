@@ -7,6 +7,7 @@
 	let nodes = [];
 	let edges = [];
 	let isDragging = false;
+	let hoveredNode = null;
 	let dragNode = null;
 	let selectedNode = null;
 
@@ -16,6 +17,7 @@
 		canvas.addEventListener('mousedown', startDrag);
 		canvas.addEventListener('mousemove', drag);
 		canvas.addEventListener('mouseup', endDrag);
+		canvas.addEventListener('mousemove', detectHover);
 		canvas.addEventListener('contextmenu', deleteNode);
 		draw();
 	});
@@ -72,7 +74,13 @@
 		}
 	}
 
-	function endDrag() {
+	function detectHover(event) {
+		const rect = canvas.getBoundingClientRect();
+		const x = event.clientX - rect.left;
+		const y = event.clientY - rect.top;
+		hoveredNode = nodes.find((node) => Math.hypot(node.x - x, node.y - y) < 10);
+		draw();
+	}
 		if (selectedNode) {
 			const rect = canvas.getBoundingClientRect();
 			const x = event.clientX - rect.left;
@@ -124,6 +132,15 @@
 			ctx.lineTo(nodes[edge.end].x, nodes[edge.end].y);
 			ctx.stroke();
 		});
+
+		// Draw hovered node ring
+		if (hoveredNode) {
+			ctx.strokeStyle = 'yellow';
+			ctx.lineWidth = 3;
+			ctx.beginPath();
+			ctx.arc(hoveredNode.x, hoveredNode.y, 12, 0, Math.PI * 2);
+			ctx.stroke();
+		}
 
 		// Draw nodes
 		nodes.forEach((node) => {
