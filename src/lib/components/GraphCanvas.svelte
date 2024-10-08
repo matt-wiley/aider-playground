@@ -92,27 +92,27 @@
 			draw();
 		}
 	}
-	const ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	function draw() {
+		const ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	// Draw edges
-	ctx.strokeStyle = '#000';
-	edges.forEach((edge) => {
-		ctx.beginPath();
-		ctx.moveTo(nodes[edge.start].x, nodes[edge.start].y);
-		ctx.lineTo(nodes[edge.end].x, nodes[edge.end].y);
-		ctx.stroke();
-	});
+		// Draw edges
+		ctx.strokeStyle = '#000';
+		edges.forEach((edge) => {
+			ctx.beginPath();
+			ctx.moveTo(nodes[edge.start].x, nodes[edge.start].y);
+			ctx.lineTo(nodes[edge.end].x, nodes[edge.end].y);
+			ctx.stroke();
+		});
 
-	// Draw nodes
-	nodes.forEach((node) => {
-		ctx.fillStyle = '#007bff';
-		ctx.beginPath();
-		ctx.arc(node.x, node.y, 10, 0, Math.PI * 2);
-		ctx.fill();
-	});
-
-  
+		// Draw nodes
+		nodes.forEach((node) => {
+			ctx.fillStyle = '#007bff';
+			ctx.beginPath();
+			ctx.arc(node.x, node.y, 10, 0, Math.PI * 2);
+			ctx.fill();
+		});
+	}
 
 </script>
 
