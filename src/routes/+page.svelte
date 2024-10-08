@@ -25,6 +25,7 @@
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
+    <a href="/test-component1">Test Component 1</a>
   </nav>
   <main class="content">
     <h1>Welcome to SvelteKit</h1>
